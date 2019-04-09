@@ -1,8 +1,8 @@
 /*
 *	DKU Operating System Lab
 *	    Lab1 (Scheduler Algorithm Simulator)
-*	    Student id : 32161796
-*	    Student name : Park_Jung_Sun
+*	    Student id : 32141183
+*	    Student name : Ji Hyung Kim
 *
 *   lab1_sched.c :
 *       - Lab1 source file.
@@ -27,20 +27,34 @@
 
 #include "lab1_sched_types.h"
 
-int main(int argc, char *argv[]){
+int main(){
+	// Initialize workload
 	init_workload();
 	print_workload();
+
+	// FCFS
 	scheduling(FCFS_MODE);
 	print_result("FCFS");
+
+	// Robin Round
 	scheduling(RR_MODE);
 	print_result("RR");
+
+	// SJF
 	scheduling(SJF_MODE);
 	print_result("SJF");
+
+	// STCF
 	scheduling(STCF_MODE);
 	print_result("STCF");
+
+	// MLFQ
 	scheduling(MLFQ_MODE);
 	print_result("MLFQ");
+
+	// Lottery
 	scheduling(LOTTERY_MODE);
 	print_result("LOTTERY");
+
 	return 0;
 }
