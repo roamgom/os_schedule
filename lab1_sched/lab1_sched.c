@@ -48,6 +48,86 @@ int character_location = -1;
 const int total_time = 100;
 const int time_slice = 1;
 
+
+void init_workload(){
+	/*
+	init_workload: Initialize queue to manage process
+
+	:return: Void
+	*/
+	int i=0;
+	printf("process_number your time (maximum: 100)\n");
+	printf("number of processes : ");
+	scanf("%d", &process_number);
+	process = malloc(sizeof(Process)*process_number);
+	result_picture = (char**)malloc(sizeof(char*)*process_number);
+	for(i=0;i<process_number;i++){
+		printf("input %c process workload(arrival_time, service_time, ticket) : ", i+65);
+		scanf("%d %d %d", &process[i].arrival_time,&process[i].service_time,&process[i].ticket);
+	}
+
+	for(i=0;i<process_number;i++){
+		result_picture[i] = (char*)malloc(sizeof(char)*total_time);
+	}
+}
+void init_queue(int mode){
+	/*
+	init_queue: Initialize queue to manage process
+	:mode: Schedule mode
+
+	:return: Void
+	*/
+	int i =0,k;
+	schedule_time = 0;
+	schedule_mode = mode;
+	if(schedule_mode == MLFQ_MODE){
+		// If schedule mode is MLFQ
+		queue_level = MLFQ_LEVEL;
+	}else{
+		queue_level = SINGLE_LEVEL;
+	}
+	ready_queue = malloc(sizeof(Queue)*queue_level);
+	for(i =0;i<queue_level;i++){
+		// Initialize queue
+		ready_queue[i].front = ready_queue[i].rear = 0;
+		ready_queue[i].size = process_number+1;
+		ready_queue[i].index = malloc(sizeof(int)*ready_queue[i].size);
+		for(k=0;k<QUEUE_SIZE+1;k++){
+			ready_queue[i].index[k] = -1;
+		}
+	}
+}
+void init_process(){
+	/*
+	init_process: Initialize queue to manage process
+
+	:return: Void
+	*/
+	int i =0;
+	for(i=0;i<process_number;i++){
+		process[i].remain_time = process[i].service_time;
+		process[i].turnarround_time = 0;
+		process[i].response_time = -1;
+		process[i].is_complete =0;
+		process[i].level = 0;
+	}
+}
+void init_result(){
+	/*
+	init_queue: Initialize result
+
+	:return: Void
+	*/
+	int i =0,k=0;
+	character_location =-1;
+	for(k=0;k<process_number;k++){
+		for(i=0;i<total_time;i++){
+			result_picture[k][i]=45;
+		}
+	}
+}
+
+
 void scheduling(int mode){
 	/*
 	scheduling: Start scheduling
@@ -104,70 +184,16 @@ void scheduling(int mode){
 	del_queue();
 }
 
-void init_workload(){
+
+void input_result(int i){
 	/*
-	init_workload: Initialize queue to manage process
+	input_result: Input value as alphabet
+	:i: value as a number
 
 	:return: Void
 	*/
-	int i=0;
-	printf("process_number your time (maximum: 100)\n");
-	printf("number of processes : ");
-	scanf("%d", &process_number);
-	process = malloc(sizeof(Process)*process_number);
-	result_picture = (char**)malloc(sizeof(char*)*process_number);
-	for(i=0;i<process_number;i++){
-		printf("input %c process workload(arrival_time, service_time, ticket) : ", i+65);
-		scanf("%d %d %d", &process[i].arrival_time,&process[i].service_time,&process[i].ticket);
-	}
-
-	for(i=0;i<process_number;i++){
-		result_picture[i] = (char*)malloc(sizeof(char)*total_time);
-	}
+	result_picture[i][character_location]=i+65;
 }
-
-void init_process(){
-	/*
-	init_process: Initialize queue to manage process
-
-	:return: Void
-	*/
-	int i =0;
-	for(i=0;i<process_number;i++){
-		process[i].remain_time = process[i].service_time;
-		process[i].turnarround_time = 0;
-		process[i].response_time = -1;
-		process[i].is_complete =0;
-		process[i].level = 0;
-	}
-}
-
-void init_queue(int mode){
-	/*
-	init_queue: Initialize queue to manage process
-	:mode: Schedule mode
-
-	:return: Void
-	*/
-	int i =0,k;
-	schedule_time = 0;
-	schedule_mode = mode;
-	if(schedule_mode == MLFQ_MODE){ // MLFQ MODE?
-		queue_level = MLFQ_LEVEL;
-	}else{
-		queue_level = SINGLE_LEVEL;
-	}
-	ready_queue = malloc(sizeof(Queue)*queue_level);
-	for(i =0;i<queue_level;i++){ // INIT QUEUE
-		ready_queue[i].front = ready_queue[i].rear = 0;
-		ready_queue[i].size = process_number+1;
-		ready_queue[i].index = malloc(sizeof(int)*ready_queue[i].size);
-		for(k=0;k<QUEUE_SIZE+1;k++){
-			ready_queue[i].index[k] = -1;
-		}
-	}
-}
-
 void input_queue(int index){
 	/*
 	input_queue: Input value into queue by index
@@ -181,7 +207,6 @@ void input_queue(int index){
 	in_index = ready_queue[i].rear;
 	ready_queue[i].index[in_index] = index;
 }
-
 int output_queue(){
 	/*
 	output_queue: Get the output for queue
@@ -259,7 +284,6 @@ int output_queue(){
 	out_index = ready_queue[i].front;
 	return ready_queue[i].index[out_index];
 }
-
 void del_queue(){
 	/*
 	del_queue: Delete process on queue
@@ -288,7 +312,6 @@ int is_new_process(){
 	character_location++;
 	return count;
 }
-
 int is_finished_process(){
 	/*
 	init_queue: Check if the process if finished
@@ -305,7 +328,6 @@ int is_finished_process(){
 		return 0;
 	return 1;
 }
-
 int is_queue_empty(int i){
 	/*
 	is_queue_empty: Check if the queue is empty
@@ -319,7 +341,6 @@ int is_queue_empty(int i){
 		return 0;
 	}
 }
-
 int is_process_alone(){
 	/*
 	is_process_alone: Check if the process is alone
@@ -338,6 +359,7 @@ int is_process_alone(){
 	return 0;
 }
 
+
 void print_workload(){
 	/*
 	print_workload: Print the workload as text
@@ -346,12 +368,11 @@ void print_workload(){
 	*/
 	int i = 0;
 	printf("|------------workload-------------|\n");
-	printf("|___|_arrival_time_|_service_time_|\n");
+	printf("|---|-arrival_time-|-service_time-|\n");
 	for(i=0;i<process_number;i++){
 		printf("|_%c_|_%12d_|_%12d_|\n", i+65, process[i].arrival_time, process[i].service_time);
 	}
 }
-
 void print_result(char* text){
 	/*
 	print_result: Print the result as text
@@ -361,38 +382,12 @@ void print_result(char* text){
 	*/
 	int i=0;
 	printf("\n\n\n|%-41s|\n",text);
-	printf("|___|_turnarround_time_|___respose_time___|\n");
+	printf("|---|-turnarround_time-|---respose_time---|\n");
 	for(i=0;i<process_number;i++){
 		printf("|_%c_|_%16d_|_%16d_|\n", i+65, process[i].turnarround_time, process[i].response_time);
 	}
 	print_picture();
 }
-
-void init_result(){
-	/*
-	init_queue: Initialize result
-
-	:return: Void
-	*/
-	int i =0,k=0;
-	character_location =-1;
-	for(k=0;k<process_number;k++){
-		for(i=0;i<total_time;i++){
-			result_picture[k][i]=45;
-		}
-	}
-}
-
-void input_result(int i){
-	/*
-	input_result: Input value as alphabet
-	:i: value as a number
-
-	:return: Void
-	*/
-	result_picture[i][character_location]=i+65;
-}
-
 void print_picture(){
 	/*
 	print_picture: Print scheduling picture
@@ -406,6 +401,7 @@ void print_picture(){
 		printf("|_%c_| %s \n",i+65,result_picture[i]);
 	}
 }
+
 
 int empty_queue(){
 	/*
