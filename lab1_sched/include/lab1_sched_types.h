@@ -23,7 +23,7 @@
 #define MLFQ_LEVEL 5	// the number of queue level
 #define SINGLE_LEVEL 1
 /* type of PCB, QUEUE */
-typedef struct Process {
+typedef struct PROCESS {
 	int arrival_time;
 	int service_time;
 	int remain_time;
@@ -32,18 +32,18 @@ typedef struct Process {
 	int is_complete;
 	int level;
 	int ticket;
-} PCB;
-typedef struct Queue {
+} Process;
+typedef struct PROCESS {
 	int front;
 	int rear;
 	int size;
 	int *index;
-} QUEUE;
+} Queue	;
 /* Schedul_func */
 void scheduling(int);
 /* init_func */
 void init_workload();
-void init_PCB();
+void init_process();
 void init_ready_queue(int); // init by schedul_mode
 void init_result(); // result picture
 /* queue_func*/
