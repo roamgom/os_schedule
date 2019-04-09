@@ -157,7 +157,7 @@ void init_queue(int mode){
 	}else{
 		queue_level = SINGLE_LEVEL;
 	}
-	ready_queue = malloc(sizeof(QUEUE)*queue_level);
+	ready_queue = malloc(sizeof(Queue)*queue_level);
 	for(i =0;i<queue_level;i++){ // INIT QUEUE
 		ready_queue[i].front = ready_queue[i].rear = 0;
 		ready_queue[i].size = process_number+1;
