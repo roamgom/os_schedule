@@ -9,19 +9,26 @@
 *       - must contains scueduler algorithm function's declations.
 *
 */
+
+// lab1_sched_types.h
 #ifndef _LAB1_HEADER_H
 #define _LAB1_HEADER_H
-/* Scheduling mode */
+
+// Scheduling mode
 #define FCFS_MODE 0 // FCFS, RR
 #define RR_MODE 10 //RR
 #define SJF_MODE 1  // SJF SRTF
 #define STCF_MODE 11 // SRTF
-#define MLFQ_MODE 12 // MLFQ**
-#define LOTTERY_MODE 13 // Lottery**
-/* define value */
-#define QUEUE_SIZE 5
+#define MLFQ_MODE 12 // MLFQ
+// 
 #define MLFQ_LEVEL 5	// the number of queue level
 #define SINGLE_LEVEL 1
+// Lottery (+a)
+#define LOTTERY_MODE 13 // Lottery**
+
+// Queue size
+#define QUEUE_SIZE 5
+
 /* type of PCB, QUEUE */
 typedef struct PROCESS {
 	int arrival_time;
