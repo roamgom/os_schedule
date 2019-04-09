@@ -40,7 +40,7 @@ typedef struct PROCESS {
 	int level;
 	int ticket;
 } Process;
-typedef struct PROCESS {
+typedef struct QUEUE {
 	int front;
 	int rear;
 	int size;
