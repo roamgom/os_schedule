@@ -51,21 +51,21 @@ void scheduling(int);
 /* init_func */
 void init_workload();
 void init_process();
-void init_ready_queue(int); // init by schedul_mode
+void init_queue(int); // init by schedul_mode
 void init_result(); // result picture
 /* queue_func*/
-void input_ready_queue(int);
-int output_ready_queue();
-void del_ready_queue();
-int queue_is_empty_full(int); // if ready_queue is empty
-int queue_empty(); // if every thing is not run (not schedul)
+void input_queue(int);
+int output_queue();
+void del_queue();
+int is_queue_empty(int); // if ready_queue is empty
+int empty_queue(); // if every thing is not run (not schedul)
 /* print_func */
-void workload_print();
-void result_print(char*); // result PCB print
-void picture_print(); // result schduling picture print
+void print_workload();
+void print_result(char*); // result PCB print
+void print_picture(); // result schduling picture print
 /* others_func */
-int is_arrival_new(); // if new schduling entity come
+int is_new_process(); // if new schduling entity come
 void input_result(int); // scheduling picture draw
-int is_all_finished(); // if all scheduling entity finished
-int process_is_alone(); // scheduling entitiy is alone
+int is_finished_process(); // if all scheduling entity finished
+int is_process_alone(); // scheduling entitiy is alone
 #endif /* LAB1_HEADER_H*/

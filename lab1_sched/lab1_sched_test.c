@@ -29,18 +29,18 @@
 
 int main(int argc, char *argv[]){
 	init_workload();
-	workload_print();
+	print_workload();
 	scheduling(FCFS_MODE);
-	result_print("FCFS");
+	print_result("FCFS");
 	scheduling(RR_MODE);
-	result_print("RR");
+	print_result("RR");
 	scheduling(SJF_MODE);
-	result_print("SJF");
+	print_result("SJF");
 	scheduling(STCF_MODE);
-	result_print("STCF");
+	print_result("STCF");
 	scheduling(MLFQ_MODE);
-	result_print("MLFQ");
+	print_result("MLFQ");
 	scheduling(LOTTERY_MODE);
-	result_print("LOTTERY");
+	print_result("LOTTERY");
 	return 0;
 }

@@ -338,9 +338,9 @@ int is_process_alone(){
 	return 0;
 }
 
-void workload_print(){
+void print_workload(){
 	/*
-	workload_print: Print the workload as text
+	print_workload: Print the workload as text
 
 	:return: Void
 	*/
