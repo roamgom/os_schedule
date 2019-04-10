@@ -40,7 +40,7 @@ int queue_level;
 int schedule_time = 0;
 int schedule_mode;
 
-// 
+// Result text
 char **result_picture;
 int character_location = -1;
 
@@ -127,7 +127,7 @@ void init_result(){
 	character_location =-1;
 	for(k=0;k<process_number;k++){
 		for(i=0;i<total_time;i++){
-			result_picture[k][i]=45;
+			result_picture[k][i]=42;
 		}
 	}
 }
@@ -372,10 +372,10 @@ void print_workload(){
 	:return: Void
 	*/
 	int i = 0;
-	printf("|------------workload-------------|\n");
-	printf("|---|-arrival_time-|-service_time-|\n");
+	printf("|---------------Workload----------------|\n");
+	printf("|-----|--arrival_time--|--service_time--|\n");
 	for(i=0;i<process_number;i++){
-		printf("|_%c_|_%12d_|_%12d_|\n", i+65, process[i].arrival_time, process[i].service_time);
+		printf("|--%c--|--%12d--|--%12d--|\n", i+65, process[i].arrival_time, process[i].service_time);
 	}
 }
 void print_result(char* text){
@@ -387,9 +387,9 @@ void print_result(char* text){
 	*/
 	int i=0;
 	printf("\n\n\n|%-41s|\n",text);
-	printf("|---|-turnarround_time-|---respose_time---|\n");
+	printf("|-----|--turnarround_time--|---respose_time---|\n");
 	for(i=0;i<process_number;i++){
-		printf("|_%c_|_%16d_|_%16d_|\n", i+65, process[i].turnarround_time, process[i].response_time);
+		printf("|--%c--|--%16d--|--%16d--|\n", i+65, process[i].turnarround_time, process[i].response_time);
 	}
 	print_picture();
 }
@@ -403,7 +403,7 @@ void print_picture(){
 	printf("|Scheduling Picture|\n");
 	for(i=0;i<process_number;i++){
 		result_picture[i][schedule_time] = '\0';
-		printf("|_%c_| %s \n",i+65,result_picture[i]);
+		printf("|-%c-| %s \n",i+65,result_picture[i]);
 	}
 }
 
