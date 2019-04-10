@@ -403,7 +403,7 @@ void print_picture(){
 	printf("|Scheduling Picture|\n");
 	for(i=0;i<process_number;i++){
 		result_picture[i][schedule_time] = '\0';
-		printf("|-%c-| %s \n",i+65,result_picture[i]);
+		printf("|--%c--| %s \n",i+65,result_picture[i]);
 	}
 }
 
