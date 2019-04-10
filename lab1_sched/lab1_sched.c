@@ -66,6 +66,11 @@ void init_workload(){
 		scanf("%d %d %d", &process[i].arrival_time,&process[i].service_time,&process[i].ticket);
 	}
 
+	// Get time slice
+	// On this homework, set time slice as 1
+	// printf("time_slice : ");
+	// scanf("%d",&time_slice);
+
 	for(i=0;i<process_number;i++){
 		result_picture[i] = (char*)malloc(sizeof(char)*total_time);
 	}

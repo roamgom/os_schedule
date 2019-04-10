@@ -40,13 +40,13 @@ int main(){
 	scheduling(RR_MODE);
 	print_result("RR");
 
-	// SJF
-	scheduling(SJF_MODE);
-	print_result("SJF");
+	// // SJF
+	// scheduling(SJF_MODE);
+	// print_result("SJF");
 
-	// STCF
-	scheduling(STCF_MODE);
-	print_result("STCF");
+	// // STCF
+	// scheduling(STCF_MODE);
+	// print_result("STCF");
 
 	// MLFQ
 	scheduling(MLFQ_MODE);
