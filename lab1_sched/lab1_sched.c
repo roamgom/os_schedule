@@ -381,13 +381,13 @@ void print_workload(){
 void print_result(char* text){
 	/*
 	print_result: Print the result as text
-	:text: Each process result
+	:text: Each process result name
 
 	:return: Void
 	*/
 	int i=0;
-	printf("\n\n\n|%-41s|\n",text);
-	printf("|-----|--turnarround_time--|---respose_time---|\n");
+	printf("\n\n\n|%-47s|\n",text);
+	printf("|-----|---turnarround_time---|---respose_time---|\n");
 	for(i=0;i<process_number;i++){
 		printf("|--%c--|--%16d--|--%16d--|\n", i+65, process[i].turnarround_time, process[i].response_time);
 	}
