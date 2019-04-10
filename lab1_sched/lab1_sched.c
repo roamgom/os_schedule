@@ -389,7 +389,7 @@ void print_result(char* text){
 	printf("\n\n\n|%-47s|\n",text);
 	printf("|-----|---turnarround_time---|---respose_time---|\n");
 	for(i=0;i<process_number;i++){
-		printf("|--%c--|--%16d--|--%16d--|\n", i+65, process[i].turnarround_time, process[i].response_time);
+		printf("|--%c--|---%16d---|---%16d---|\n", i+65, process[i].turnarround_time, process[i].response_time);
 	}
 	print_picture();
 }
