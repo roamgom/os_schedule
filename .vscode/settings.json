@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "lab1_sched_types.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "stat.h": "c"
     }
 }

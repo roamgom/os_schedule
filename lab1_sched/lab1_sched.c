@@ -1,8 +1,8 @@
 /*
-*	DKU Operating System Lab
+* DKU Operating System Lab
 *	    Lab1 (Scheduler Algorithm Simulator)
-*	    Student id : 32141183
-*	    Student name : Ji Hyung Kim
+*	    Student id : 32141183, 32131704
+*	    Student name : Ji Hyung Kim, Hong Jae Park
 *
 *   lab1_sched.c :
 *       - Lab1 source file.
@@ -119,7 +119,7 @@ void init_process(){
 }
 void init_result(){
 	/*
-	init_queue: Initialize result
+	init_result: Initialize result as ASCII text
 
 	:return: Void
 	*/
@@ -149,7 +149,6 @@ void scheduling(int mode){
 	init_queue(mode);
 	init_process();
 	init_result();
-
 	// first schedule
 	while(!is_new_process()) schedule_time++;
 	run = output_queue();
@@ -166,7 +165,7 @@ void scheduling(int mode){
 			// when process is complete
 			process[run].turnarround_time = schedule_time - process[run].arrival_time;
 			process[run].is_complete = 1;
-			if(!is_finished_process()){ 
+			if(!is_finished_process()){
 				// when all process is complete
 				break;
 			}
@@ -319,7 +318,7 @@ int is_new_process(){
 }
 int is_finished_process(){
 	/*
-	init_queue: Check if the process if finished
+	is_finished_process: Check if the process is finished
 
 	:return: Status of the process by finish
 	*/
@@ -410,7 +409,7 @@ void print_picture(){
 
 int empty_queue(){
 	/*
-	init_queue: Initialize queue to manage process
+	empty_queue: Initialize queue to manage process
 	:mode: Schedule mode
 
 	:return: Void

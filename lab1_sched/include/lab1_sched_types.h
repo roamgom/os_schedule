@@ -1,8 +1,8 @@
 /*
-*	DKU Operating System Lab
-*	    Lab1 (Scheduler Algorithm Simulator)
-*	    Student id : 32141183
-*	    Student name : Ji Hyung Kim
+* DKU Operating System Lab
+*	  Lab1 (Scheduler Algorithm Simulator)
+*	  Student id : 32141183, 32131704
+*	  Student name : Ji Hyung Kim, Hong Jae Park
 *
 *   lab1_sched_types.h :
 *       - lab1 header file.
