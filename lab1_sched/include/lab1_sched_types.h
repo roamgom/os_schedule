@@ -16,12 +16,12 @@
 
 // Scheduling mode
 #define FCFS_MODE 0
-#define RR_MODE 5 
+#define RR_MODE 10 
 #define SJF_MODE 1
-#define STCF_MODE 6
-#define MLFQ_MODE 7
+#define STCF_MODE 11
+#define MLFQ_MODE 12
 // Lottery (+a)
-#define LOTTERY_MODE 8 // Lottery**
+#define LOTTERY_MODE 13 // Lottery**
 
 // Queue size
 #define QUEUE_SIZE 5
