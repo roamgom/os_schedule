@@ -234,8 +234,8 @@ int output_queue(){
 		return -1;
 	}
 	ready_queue[i].front = (ready_queue[i].front+1)%ready_queue[i].size;
-	if((schedule_mode%5 == 0)&&(!is_queue_empty(i))){
-		// If the schedule mode is FCFS
+	if((schedule_mode%5 == 1)&&(!is_queue_empty(i))){
+		// If the schedule mode is STCF
 		// swap schedule entity
 		int start, end, shortest,time1,time2,temp;
 		start = shortest = ready_queue[i].front;

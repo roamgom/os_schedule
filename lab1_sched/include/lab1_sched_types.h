@@ -16,7 +16,7 @@
 
 // Scheduling mode
 #define FCFS_MODE 0
-#define RR_MODE 5
+#define RR_MODE 5 
 #define SJF_MODE 1
 #define STCF_MODE 6
 #define MLFQ_MODE 7
