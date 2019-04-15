@@ -177,7 +177,7 @@ void scheduling(int mode){
 			if((!is_process_alone()) && process[run].level<MLFQ_LEVEL-1)
 				process[run].level++;
 		}
-		if((schedule_mode >= 10)&&count == time_slice){
+		if((schedule_mode >= 5)&&count == time_slice){
 			// if scheduling in [RR, MLFQ, Lottery], use time slice
 			input_queue(run);
 			run = output_queue();
@@ -234,7 +234,7 @@ int output_queue(){
 		return -1;
 	}
 	ready_queue[i].front = (ready_queue[i].front+1)%ready_queue[i].size;
-	if((schedule_mode%10 == 1)&&(!is_queue_empty(i))){
+	if((schedule_mode%5 == 1)&&(!is_queue_empty(i))){
 		// If the schedule mode is STCF
 		// swap schedule entity
 		int start, end, shortest,time1,time2,temp;
