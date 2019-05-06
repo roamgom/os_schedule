@@ -130,11 +130,11 @@ int lab2_node_insert_fg(lab2_tree *tree, lab2_node *new_node){
     pthread_mutex_lock(&thread_lock_1);
     if (tree->root == NULL){
         tree->root = new_node;
-        pthread_mutext_unlock(&thread_lock_1);
+        pthread_mutex_unlock(&thread_lock_1);
         return 1;
     }
 
-    pthread_mutext_unlock(&thread_lock_1);
+    pthread_mutex_unlock(&thread_lock_1);
 
     lab2_node* check_root_node = tree->root;
     lab2_node* tmp_node = NULL;
@@ -150,17 +150,17 @@ int lab2_node_insert_fg(lab2_tree *tree, lab2_node *new_node){
         else
             check_root_node = check_root_node->right;
         
-        pthread_mutext_lock(&tmp_node->mutex);
+        pthread_mutex_lock(&tmp_node->mutex);
         if (check_root_node == NULL)
             break;
-        pthread_mutext_unlock(&tmp_node->mutex);
+        pthread_mutex_unlock(&tmp_node->mutex);
     }
     if (new_node->key < tmp_node->key)
         tmp_node->left = new_node;
     else
         tmp_node->right = new_node;
 
-    pthread_mutext_unlock(&tmp_node->mutex);
+    pthread_mutex_unlock(&tmp_node->mutex);
     return 1;
 }
 
@@ -177,7 +177,7 @@ int lab2_node_insert_cg(lab2_tree *tree, lab2_node *new_node){
     pthread_mutex_lock(&thread_lock_1);
     if (tree->root == NULL){
         tree->root = new_node;
-        pthread_mutext_unlock(&thread_lock_1);
+        pthread_mutex_unlock(&thread_lock_1);
         return 1;
     }
 
@@ -188,7 +188,7 @@ int lab2_node_insert_cg(lab2_tree *tree, lab2_node *new_node){
         tmp_node = check_root_node;
         if (new_node->key == check_root_node->key){
             lab2_node_delete(new_node);
-            pthread_mutext_unlock(&thread_lock_1);
+            pthread_mutex_unlock(&thread_lock_1);
             return -1;
         }
         if (new_node->key < check_root_node->key)
@@ -201,7 +201,7 @@ int lab2_node_insert_cg(lab2_tree *tree, lab2_node *new_node){
     else
         tmp_node->right = new_node;
 
-    pthread_mutext_unlock(&tmp_node->mutex);
+    pthread_mutex_unlock(&tmp_node->mutex);
     return 0;
 }
 
@@ -277,13 +277,13 @@ int lab2_node_remove_fg(lab2_tree *tree, int key) {
     lab2_node* rm_node = tree->root;
     lab2_node* parent_rm_node = rm_node;
 
-    pthread_mutext_lock(&thread_lock_1);
+    pthread_mutex_lock(&thread_lock_1);
     while(1){
         // Find the object Node to remove
         if (rm_node == NULL)
             break;
         if (rm_node->key == key){
-            pthread_mutext_lock(&thread_lock_2);
+            pthread_mutex_lock(&thread_lock_2);
             break;
         }
         parent_rm_node = rm_node;
@@ -293,7 +293,7 @@ int lab2_node_remove_fg(lab2_tree *tree, int key) {
         else
             rm_node = rm_node->right;
     }
-    pthread_mutext_unlock(&thread_lock_1);
+    pthread_mutex_unlock(&thread_lock_1);
     if (rm_node == NULL)
         // Return error if the node is Empty
         return -1;
@@ -342,7 +342,7 @@ int lab2_node_remove_fg(lab2_tree *tree, int key) {
 int lab2_node_remove_cg(lab2_tree *tree, int key) {
     // Remove node coarse-grained
 
-    pthread_mutext_lock(&thread_lock_1);
+    pthread_mutex_lock(&thread_lock_1);
     lab2_node* rm_node = tree->root;
     lab2_node* parent_rm_node = NULL;
 
@@ -362,7 +362,7 @@ int lab2_node_remove_cg(lab2_tree *tree, int key) {
     }
     if (rm_node == NULL){
         // Return error if the node is Empty
-        pthread_mutext_unlock(&thread_lock_1);
+        pthread_mutex_unlock(&thread_lock_1);
         return -1;
     }
     
