@@ -32,14 +32,14 @@ pthread_mutex_t thread_lock_2 = PTHREAD_MUTEX_INITIALIZER;
 
 int lab2_node_print_inorder(lab2_tree *tree) {
     // 재귀함수 필요.
-    return print_node(tree->root);
+    return get_node(tree->root);
 }
 
-int print_node(lab2_node* node){
+int get_node(lab2_node* node){
     if (node){
-        print_node(node->left);
+        get_node(node->left);
         printf("%d ", node->key);
-        print_node(node->right);
+        get_node(node->right);
 
         // free node memory
         node = NULL;
