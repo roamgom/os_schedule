@@ -30,12 +30,6 @@ pthread_mutex_t thread_lock_2 = PTHREAD_MUTEX_INITIALIZER;
  *  @return                 : status (success or fail)
  */
 
-int lab2_node_print_inorder(lab2_tree *tree) {
-    // 재귀함수 필요.
-    int node_status = get_node(tree->root);
-    return node_status;
-}
-
 int get_node(lab2_node* node){
     if (node){
         get_node(node->left);
@@ -47,6 +41,12 @@ int get_node(lab2_node* node){
         // free(node);
     }
     return 1;
+}
+
+int lab2_node_print_inorder(lab2_tree *tree) {
+    // 재귀함수 필요.
+    int node_status = get_node(tree->root);
+    return node_status;
 }
 
 /*
