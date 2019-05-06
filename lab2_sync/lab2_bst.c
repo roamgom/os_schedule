@@ -19,6 +19,9 @@
 
 #include "lab2_sync_types.h"
 
+pthread_mutex_t thread_lock_1 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t thread_lock_2 = PTHREAD_MUTEX_INITIALIZER;
+
 /*
  * TODO
  *  Implement funtction which traverse BST in in-order
@@ -27,12 +30,10 @@
  *  @return                 : status (success or fail)
  */
 
-pthread_mutex_t thread_lock_1 = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t thread_lock_2 = PTHREAD_MUTEX_INITIALIZER;
-
 int lab2_node_print_inorder(lab2_tree *tree) {
     // 재귀함수 필요.
-    return get_node(tree->root);
+    int node_status = get_node(tree->root);
+    return node_status;
 }
 
 int get_node(lab2_node* node){
